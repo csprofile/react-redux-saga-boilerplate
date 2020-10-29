@@ -8,11 +8,11 @@ config.mode = 'development';
 config.context = __dirname;
 config.devtool = 'eval';
 
-config.entry = './app/Index.tsx';
+config.entry = path.resolve(__dirname, 'app', 'Index.tsx')
 config.output = {
   path: path.resolve(__dirname, 'dist'),
   filename: 'bundle.js',
-  publicPath: 'dist'
+  publicPath: '/'
 };
 config.resolve = {
   extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
@@ -33,9 +33,10 @@ config.module = {
 
 config.plugins = [
   new HTMLWebpackPlugin({
-    template: path.resolve(__dirname, 'dist', 'index.html'),
+    template: path.join(__dirname, 'webpacktemplate.html'),
   })
 ];
+
 config.devServer = {
   contentBase: path.join(__dirname, 'dist'),
   watchContentBase: true,
@@ -47,7 +48,7 @@ config.devServer = {
   publicPath: '/',
   hot: true,
   open: true,
-  openPage: 'http://127.0.0.1:8080/dist',
+  openPage: 'http://127.0.0.1:3000/dist',
 }; 
 
 module.exports = config;
